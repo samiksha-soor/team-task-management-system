@@ -9,6 +9,7 @@
        *ngIf="authService.hasRole('Admin')">Users</a>
   </div>
   <div class="user">
+    <app-notification-bell></app-notification-bell>
     <span>{{ authService.currentUser()?.fullName }} ({{ authService.currentUser()?.role }})</span>
     <button (click)="logout()">Logout</button>
   </div>

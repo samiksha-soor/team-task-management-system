@@ -1,0 +1,107 @@
+.notification-bell { position: relative; }
+
+.bell-button {
+  position: relative;
+  background: none;
+  border: none;
+  color: #c7d2fe;
+  cursor: pointer;
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.bell-button:hover { color: white; background: rgba(255, 255, 255, 0.08); }
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  line-height: 1;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  right: 0;
+  width: 320px;
+  max-height: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  animation: dropdown-fade-in 0.12s ease-out;
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.9rem;
+}
+
+.mark-all {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.mark-all:hover { text-decoration: underline; }
+
+.dropdown-list { overflow-y: auto; max-height: 340px; }
+
+.notification-item {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #f9fafb;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.notification-item:hover { background: #f9fafb; }
+.notification-item.unread { background: #eef2ff; }
+.notification-item.unread:hover { background: #e0e7ff; }
+
+.notification-item .message {
+  margin: 0 0 0.2rem;
+  font-size: 0.85rem;
+  color: #1f2937;
+  line-height: 1.35;
+}
+.notification-item .time {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+.empty {
+  padding: 1.5rem 0.9rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+@keyframes dropdown-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

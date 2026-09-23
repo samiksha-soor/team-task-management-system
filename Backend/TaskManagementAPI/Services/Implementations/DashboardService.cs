@@ -15,7 +15,7 @@ namespace TaskManagementAPI.Services.Implementations
             _taskRepository = taskRepository;
         }
 
-        public async Task<DashboardSummaryDto> GetSummaryAsync(int currentUserId, string currentRole)
+        public async Task<DashboardSummaryDto> GetSummaryAsync(int currentUserId, string currentRole, TaskFilterDto filter)
         {
             var query = _taskRepository.QueryWithDetails();
 
@@ -23,6 +23,15 @@ namespace TaskManagementAPI.Services.Implementations
                 query = query.Where(t => t.AssignedToId == currentUserId);
             else if (currentRole == "Manager")
                 query = query.Where(t => t.Team!.ManagerId == currentUserId);
+
+            if (filter.Status.HasValue)
+                query = query.Where(t => t.Status == filter.Status.Value);
+            if (filter.Priority.HasValue)
+                query = query.Where(t => t.Priority == filter.Priority.Value);
+            if (filter.DeadlineFrom.HasValue)
+                query = query.Where(t => t.Deadline >= filter.DeadlineFrom.Value);
+            if (filter.DeadlineTo.HasValue)
+                query = query.Where(t => t.Deadline <= filter.DeadlineTo.Value);
 
             var tasks = await query.ToListAsync();
 

@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementAPI.DTOs;
 using TaskManagementAPI.Services.Interfaces;
 
 namespace TaskManagementAPI.Controllers
@@ -21,9 +22,9 @@ namespace TaskManagementAPI.Controllers
         private string CurrentRole => User.FindFirstValue(ClaimTypes.Role)!;
 
         [HttpGet("summary")]
-        public async Task<IActionResult> GetSummary()
+        public async Task<IActionResult> GetSummary([FromQuery] TaskFilterDto filter)
         {
-            var summary = await _dashboardService.GetSummaryAsync(CurrentUserId, CurrentRole);
+            var summary = await _dashboardService.GetSummaryAsync(CurrentUserId, CurrentRole, filter);
             return Ok(summary);
         }
     }

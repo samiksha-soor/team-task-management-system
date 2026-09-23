@@ -1,4 +1,6 @@
 .dashboard { padding: 1.5rem; }
+.filters { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.filters select, .filters input { padding: 0.4rem; border-radius: 6px; border: 1px solid #ccc; }
 .cards { display: flex; gap: 1rem; margin: 1rem 0 2rem; flex-wrap: wrap; }
 .card { flex: 1; min-width: 120px; padding: 1rem; border-radius: 10px; text-align: center; color: white; }
 .card span { font-size: 1.8rem; font-weight: 700; display: block; }

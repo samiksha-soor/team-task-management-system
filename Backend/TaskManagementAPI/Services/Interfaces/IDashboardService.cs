@@ -4,6 +4,6 @@ namespace TaskManagementAPI.Services.Interfaces
 {
     public interface IDashboardService
     {
-        Task<DashboardSummaryDto> GetSummaryAsync(int currentUserId, string currentRole);
+        Task<DashboardSummaryDto> GetSummaryAsync(int currentUserId, string currentRole, TaskFilterDto filter);
     }
 }

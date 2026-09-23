@@ -1,0 +1,10 @@
+.detail-page { padding: 1.5rem; max-width: 640px; }
+.meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem; }
+.tags { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.badge { background: #e5e7eb; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.8rem; }
+.comments { margin: 1rem 0; }
+.comment { border-bottom: 1px solid #eee; padding: 0.6rem 0; }
+.comment .time { color: #9ca3af; font-size: 0.8rem; margin-left: 0.5rem; }
+.add-comment { display: flex; gap: 0.5rem; align-items: flex-start; }
+.add-comment textarea { flex: 1; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; }
+.add-comment button { padding: 0.5rem 1rem; background: #4f46e5; color: white; border: none; border-radius: 6px; cursor: pointer; }

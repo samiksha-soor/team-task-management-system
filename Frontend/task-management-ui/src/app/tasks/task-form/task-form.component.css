@@ -1,0 +1,6 @@
+.form-page { padding: 1.5rem; max-width: 480px; }
+form { display: flex; flex-direction: column; gap: 0.4rem; }
+input, select, textarea { padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 0.6rem; }
+button { padding: 0.7rem; border: none; border-radius: 6px; background: #4f46e5; color: white; cursor: pointer; font-weight: 600; }
+button:disabled { background: #a5a5f0; }
+.error { color: #dc2626; font-size: 0.9rem; }

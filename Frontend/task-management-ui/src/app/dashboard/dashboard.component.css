@@ -1,0 +1,18 @@
+.dashboard { padding: 1.5rem; }
+.cards { display: flex; gap: 1rem; margin: 1rem 0 2rem; flex-wrap: wrap; }
+.card { flex: 1; min-width: 120px; padding: 1rem; border-radius: 10px; text-align: center; color: white; }
+.card span { font-size: 1.8rem; font-weight: 700; display: block; }
+.total { background: #4f46e5; }
+.todo { background: #6b7280; }
+.progress { background: #f59e0b; }
+.done { background: #10b981; }
+.overdue { background: #ef4444; }
+.task-table { width: 100%; border-collapse: collapse; }
+.task-table th, .task-table td { text-align: left; padding: 0.6rem; border-bottom: 1px solid #eee; }
+.badge { padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.8rem; background: #e5e7eb; }
+.badge.Done { background: #d1fae5; color: #065f46; }
+.badge.InProgress { background: #fef3c7; color: #92400e; }
+.badge.ToDo { background: #e5e7eb; color: #374151; }
+.badge.High { background: #fee2e2; color: #991b1b; }
+.badge.Medium { background: #fef3c7; color: #92400e; }
+.badge.Low { background: #dbeafe; color: #1e40af; }

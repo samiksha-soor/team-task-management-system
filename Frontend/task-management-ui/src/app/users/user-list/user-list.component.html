@@ -1,0 +1,26 @@
+<div class="users-page">
+  <h1>Users</h1>
+
+  <div *ngIf="loading">Loading users...</div>
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <table class="user-table" *ngIf="!loading">
+    <thead>
+      <tr><th>Name</th><th>Email</th><th>Role</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.fullName }}</td>
+        <td>{{ u.email }}</td>
+        <td>
+          <select [ngModel]="u.role" (ngModelChange)="onRoleChange(u, $event)">
+            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+            <option value="User">User</option>
+          </select>
+        </td>
+      </tr>
+      <tr *ngIf="users.length === 0"><td colspan="3">No users found.</td></tr>
+    </tbody>
+  </table>
+</div>

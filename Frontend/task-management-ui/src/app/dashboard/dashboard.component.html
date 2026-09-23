@@ -1,0 +1,30 @@
+<div class="dashboard" *ngIf="!loading && summary">
+  <h1>Dashboard</h1>
+
+  <div class="cards">
+    <div class="card total"><span>{{ summary.totalTasks }}</span><p>Total Tasks</p></div>
+    <div class="card todo"><span>{{ summary.toDoCount }}</span><p>To Do</p></div>
+    <div class="card progress"><span>{{ summary.inProgressCount }}</span><p>In Progress</p></div>
+    <div class="card done"><span>{{ summary.doneCount }}</span><p>Done</p></div>
+    <div class="card overdue"><span>{{ summary.overdueCount }}</span><p>Overdue</p></div>
+  </div>
+
+  <h2>Recent Tasks</h2>
+  <table class="task-table">
+    <thead>
+      <tr><th>Title</th><th>Team</th><th>Assigned To</th><th>Status</th><th>Priority</th><th>Deadline</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of summary.tasks.slice(0, 10)">
+        <td>{{ t.title }}</td>
+        <td>{{ t.teamName }}</td>
+        <td>{{ t.assignedToName }}</td>
+        <td><span class="badge {{ t.status }}">{{ t.status }}</span></td>
+        <td><span class="badge {{ t.priority }}">{{ t.priority }}</span></td>
+        <td>{{ t.deadline ? (t.deadline | date:'mediumDate') : '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="loading">Loading dashboard...</div>

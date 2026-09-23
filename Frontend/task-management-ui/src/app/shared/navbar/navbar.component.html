@@ -1,0 +1,15 @@
+<nav class="navbar" *ngIf="authService.isLoggedIn()">
+  <div class="brand">TaskFlow</div>
+  <div class="links">
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+    <a routerLink="/teams" routerLinkActive="active"
+       *ngIf="authService.hasRole('Admin','Manager')">Teams</a>
+    <a routerLink="/users" routerLinkActive="active"
+       *ngIf="authService.hasRole('Admin')">Users</a>
+  </div>
+  <div class="user">
+    <span>{{ authService.currentUser()?.fullName }} ({{ authService.currentUser()?.role }})</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>

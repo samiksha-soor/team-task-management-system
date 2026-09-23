@@ -1,0 +1,6 @@
+.navbar { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 1.5rem; background: #1e1b4b; color: white; }
+.brand { font-weight: 700; font-size: 1.2rem; }
+.links a { color: #c7d2fe; margin-right: 1.2rem; text-decoration: none; font-weight: 500; }
+.links a.active, .links a:hover { color: white; }
+.user { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
+.user button { background: #4f46e5; border: none; color: white; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; }

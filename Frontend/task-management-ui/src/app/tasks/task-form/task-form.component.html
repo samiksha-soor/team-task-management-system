@@ -1,0 +1,38 @@
+<div class="form-page">
+  <h1>New Task</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>Title</label>
+    <input type="text" formControlName="title" />
+
+    <label>Description</label>
+    <textarea formControlName="description" rows="3"></textarea>
+
+    <label>Priority</label>
+    <select formControlName="priority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <label>Deadline</label>
+    <input type="date" formControlName="deadline" />
+
+    <label>Team</label>
+    <select formControlName="teamId">
+      <option [ngValue]="null">Select a team</option>
+      <option *ngFor="let team of teams" [ngValue]="team.id">{{ team.name }}</option>
+    </select>
+
+    <label>Assign To</label>
+    <select formControlName="assignedToId">
+      <option [ngValue]="null">Select a member</option>
+      <option *ngFor="let m of selectedTeam?.members" [ngValue]="m.id">{{ m.fullName }}</option>
+    </select>
+
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Creating...' : 'Create Task' }}
+    </button>
+  </form>
+</div>

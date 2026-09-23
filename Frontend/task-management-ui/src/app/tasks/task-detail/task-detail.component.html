@@ -1,0 +1,29 @@
+<div class="detail-page" *ngIf="!loading && task">
+  <h1>{{ task.title }}</h1>
+  <p class="meta">{{ task.teamName }} • Assigned to {{ task.assignedToName }} • Created by {{ task.createdByName }}</p>
+
+  <p>{{ task.description || 'No description provided.' }}</p>
+
+  <div class="tags">
+    <span class="badge">{{ task.status }}</span>
+    <span class="badge">{{ task.priority }}</span>
+    <span class="badge" *ngIf="task.deadline">Due {{ task.deadline | date:'mediumDate' }}</span>
+  </div>
+
+  <h2>Comments</h2>
+  <div class="comments">
+    <div class="comment" *ngFor="let c of comments">
+      <strong>{{ c.userName }}</strong>
+      <span class="time">{{ c.createdAt | date:'short' }}</span>
+      <p>{{ c.content }}</p>
+    </div>
+    <p *ngIf="comments.length === 0">No comments yet.</p>
+  </div>
+
+  <div class="add-comment">
+    <textarea [(ngModel)]="newComment" rows="2" placeholder="Add a comment..."></textarea>
+    <button (click)="addComment()" [disabled]="!newComment.trim()">Post</button>
+  </div>
+</div>
+
+<div *ngIf="loading">Loading task...</div>

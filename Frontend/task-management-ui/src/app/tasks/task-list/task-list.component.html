@@ -1,0 +1,57 @@
+<div class="task-list-page">
+  <div class="header">
+    <h1>Tasks</h1>
+    <a class="btn-primary" routerLink="/tasks/new" *ngIf="canManage()">+ New Task</a>
+  </div>
+
+  <div class="filters">
+    <select [(ngModel)]="filter.status" (change)="onFilterChange()">
+      <option [ngValue]="undefined">All Statuses</option>
+      <option value="ToDo">To Do</option>
+      <option value="InProgress">In Progress</option>
+      <option value="Done">Done</option>
+    </select>
+
+    <select [(ngModel)]="filter.priority" (change)="onFilterChange()">
+      <option [ngValue]="undefined">All Priorities</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <label>Deadline from</label>
+    <input type="date" [(ngModel)]="filter.deadlineFrom" (change)="onFilterChange()" />
+    <label>to</label>
+    <input type="date" [(ngModel)]="filter.deadlineTo" (change)="onFilterChange()" />
+  </div>
+
+  <div *ngIf="loading">Loading tasks...</div>
+
+  <table class="task-table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Title</th><th>Team</th><th>Assigned To</th><th>Priority</th><th>Deadline</th><th>Status</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tasks">
+        <td><a [routerLink]="['/tasks', t.id]">{{ t.title }}</a></td>
+        <td>{{ t.teamName }}</td>
+        <td>{{ t.assignedToName }}</td>
+        <td><span class="badge {{ t.priority }}">{{ t.priority }}</span></td>
+        <td>{{ t.deadline ? (t.deadline | date:'mediumDate') : '-' }}</td>
+        <td>
+          <select [ngModel]="t.status" (ngModelChange)="updateStatus(t, $event)">
+            <option value="ToDo">To Do</option>
+            <option value="InProgress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn-danger" *ngIf="canManage()" (click)="deleteTask(t)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="tasks.length === 0"><td colspan="7">No tasks found.</td></tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,5 @@
+.users-page { padding: 1.5rem; }
+.user-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.user-table th, .user-table td { text-align: left; padding: 0.6rem; border-bottom: 1px solid #eee; }
+.user-table select { padding: 0.35rem; border-radius: 6px; border: 1px solid #ccc; }
+.error { color: #dc2626; font-size: 0.9rem; margin-top: 0.5rem; }

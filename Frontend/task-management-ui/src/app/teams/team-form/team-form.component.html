@@ -1,0 +1,22 @@
+<div class="form-page">
+  <h1>New Team</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>Team name</label>
+    <input type="text" formControlName="name" />
+
+    <label>Description</label>
+    <textarea formControlName="description" rows="3"></textarea>
+
+    <label>Manager</label>
+    <select formControlName="managerId">
+      <option [ngValue]="null">Select a manager</option>
+      <option *ngFor="let m of managers" [ngValue]="m.id">{{ m.fullName }}</option>
+    </select>
+
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Creating...' : 'Create Team' }}
+    </button>
+  </form>
+</div>

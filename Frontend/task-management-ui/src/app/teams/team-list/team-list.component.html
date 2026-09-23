@@ -1,0 +1,49 @@
+<div class="teams-page">
+  <div class="page-header">
+    <div>
+      <h1>Teams</h1>
+      <p class="subtitle">Manage teams, managers, and members.</p>
+    </div>
+    <a class="btn-primary" routerLink="/teams/new" *ngIf="authService.hasRole('Admin')">+ New Team</a>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">Loading teams...</div>
+
+  <div class="team-grid" *ngIf="!loading">
+    <div class="team-card" *ngFor="let team of teams">
+      <div class="card-header">
+        <h3>{{ team.name }}</h3>
+        <span class="manager-badge">{{ team.managerName }}</span>
+      </div>
+
+      <p class="description" *ngIf="team.description">{{ team.description }}</p>
+
+      <div class="members-section">
+        <span class="section-label">Members</span>
+        <div class="members">
+          <span class="member-chip" *ngFor="let m of team.members">
+            {{ m.fullName }}
+            <button
+              type="button"
+              class="remove-chip"
+              *ngIf="canManageTeam(team)"
+              (click)="removeMember(team, m)"
+              aria-label="Remove member"
+            >&times;</button>
+          </span>
+          <span *ngIf="team.members.length === 0" class="empty">No members yet</span>
+        </div>
+      </div>
+
+      <div class="add-member" *ngIf="canManageTeam(team)">
+        <select [(ngModel)]="selectedNewMember[team.id]">
+          <option [ngValue]="null">Add a member...</option>
+          <option *ngFor="let u of availableUsers(team)" [ngValue]="u.id">{{ u.fullName }} ({{ u.role }})</option>
+        </select>
+        <button type="button" class="btn-add-member" (click)="addMember(team)" [disabled]="!selectedNewMember[team.id]">Add</button>
+      </div>
+    </div>
+
+    <p class="empty-state" *ngIf="teams.length === 0">No teams found.</p>
+  </div>
+</div>

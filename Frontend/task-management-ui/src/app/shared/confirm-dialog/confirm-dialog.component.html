@@ -1,0 +1,15 @@
+<div class="confirm-overlay" *ngIf="dialogService.request() as req" (click)="onCancel()">
+  <div class="confirm-card" (click)="$event.stopPropagation()">
+    <h2>{{ req.title }}</h2>
+    <p>{{ req.message }}</p>
+    <div class="confirm-actions">
+      <button type="button" class="btn-cancel" (click)="onCancel()">{{ req.cancelText }}</button>
+      <button
+        type="button"
+        [class.btn-danger]="req.danger"
+        [class.btn-confirm-primary]="!req.danger"
+        (click)="onConfirm()"
+      >{{ req.confirmText }}</button>
+    </div>
+  </div>
+</div>

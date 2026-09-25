@@ -5,6 +5,13 @@
   </div>
 
   <div class="filters">
+    <input
+      type="text"
+      class="search-box"
+      placeholder="Search by title..."
+      [(ngModel)]="searchTerm"
+    />
+
     <select [(ngModel)]="filter.status" (change)="onFilterChange()">
       <option [ngValue]="undefined">All Statuses</option>
       <option value="ToDo">To Do</option>
@@ -34,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let t of tasks">
+      <tr *ngFor="let t of filteredTasks">
         <td><a [routerLink]="['/tasks', t.id]">{{ t.title }}</a></td>
         <td>{{ t.teamName }}</td>
         <td>{{ t.assignedToName }}</td>
@@ -51,7 +58,7 @@
           <button class="btn-danger" *ngIf="canManage()" (click)="deleteTask(t)">Delete</button>
         </td>
       </tr>
-      <tr *ngIf="tasks.length === 0"><td colspan="7">No tasks found.</td></tr>
+      <tr *ngIf="filteredTasks.length === 0"><td colspan="7">No tasks found.</td></tr>
     </tbody>
   </table>
 </div>

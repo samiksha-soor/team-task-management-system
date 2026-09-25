@@ -19,7 +19,6 @@ export class TaskListComponent implements OnInit {
   loading = true;
 
   filter: TaskFilter = {};
-  searchTerm = '';
 
   constructor(
     private taskService: TaskService,
@@ -41,12 +40,6 @@ export class TaskListComponent implements OnInit {
 
   onFilterChange(): void {
     this.loadTasks();
-  }
-
-  get filteredTasks(): TaskItem[] {
-    const term = this.searchTerm.trim().toLowerCase();
-    if (!term) return this.tasks;
-    return this.tasks.filter(t => t.title.toLowerCase().includes(term));
   }
 
   updateStatus(task: TaskItem, status: TaskStatusValue): void {
